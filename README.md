@@ -38,17 +38,23 @@ This tutorial guides you through creating a WordPress site with EasyEngine using
 
 When necessary to update to a valid certificate:
 
-1. **Disable the current SSL configuration:**
+1. **Backup the current certificates (optional, for recovery purposes):**
+   ```bash
+   mkdir -p /root/certs/
+   cp /opt/easyengine/services/nginx-proxy/certs/www.domain.com.* /root/certs/
+   ```
+
+2. **Disable the current SSL configuration:**
    ```bash
    ee site update www.domain.com --ssl=off
    ```
 
-2. **Delete the existing certificates:**
+3. **Delete the existing certificates:**
    ```bash
    rm -rf /opt/easyengine/services/nginx-proxy/certs/www.domain.com.*
    ```
 
-3. **Update the site with a new valid Let's Encrypt certificate:**
+4. **Update the site with a new valid Let's Encrypt certificate:**
    ```bash
    ee site update www.domain.com --ssl=le
    ```
